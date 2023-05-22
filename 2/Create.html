@@ -1,0 +1,71 @@
+<html>
+    <head>
+
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery library -->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+
+    <body>
+        <div data-role="page">
+            <div data-role="header">
+                <h1>My Phone book</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>                        
+                        <li>
+                            <a href="PhoneBook.html">PhoneBook</a>
+                        </li>                        
+                        <li>
+                            <a href="Create.html">Create Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="main" class="ui-content" style="min-height: calc(100vh - 125px); display: grid; justify-content: center; align-content: center;">
+                <form>
+                    <div data-role="ui-field-content">
+                        <label>Name: </label>
+                        <input type="text" name="name" id="name" />
+                        <label>Mobile Number: </label>
+                        <input type="tel" name="tel" id="tel" />
+                        <input type="submit" value="Submit"/>    
+                    </div>
+                </form>
+            </div>
+            <div data-role="footer">
+                <h1>copyright 2020</h1>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $('form').submit(function(event){
+                    console.log("submission");
+                    var  prev = JSON.parse(localStorage.getItem('data')) ? JSON.parse(localStorage.getItem('data')): [];
+                    var name  = $('#name').val();
+                    var tel = $('#tel').val();
+                    var data = {
+                        name: name,
+                        tel: tel
+                    }
+                    prev.push(data)
+                    localStorage.setItem('data',JSON.stringify(prev));
+                    alert('contact Created');
+                })
+            })
+        </script>
+    </body>
+
+</html>

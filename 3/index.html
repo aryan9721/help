@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <form>
+            <label>Name: </label>
+            <input type="text" name="name" id="name" />
+            <label>Mobile Number: </label>
+            <input type="tel" name="tel" id="tel" />
+            <input type="submit" value="Submit"/>    
+        </form>
+        <button onclick="fetchdata()">Fetch</button>
+        <div id="data"></div>
+        <script>
+            $('document').ready(function(){
+                $('form').submit(function(event){
+                    event.preventDefault();
+                    var prev  = JSON.parse(localStorage.getItem('data'))? JSON.parse(localStorage.getItem('data')): [];
+                    var name = $('#name').val();
+                    var tel = $('#tel').val();
+                    
+                    var data = {
+                        name: name,
+                        tel: tel
+                    }
+                    prev.push(data);
+                    localStorage.setItem('data',JSON.stringify(prev));
+                    alert('data saved');
+                })
+            })
+
+            function fetchdata() {
+                
+            }
+        </script>
+    </body>
+</html>

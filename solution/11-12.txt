@@ -1,0 +1,11 @@
+1. create 2 vm
+2. open tools/network/, goto natnetwork, click create, check ip there.
+3. start both vm, check their ip by ifconfig (if not working sudo apt install net-tools)
+4. Enable SSH:
+	Ensure that SSH (Secure Shell) is enabled on both the source and destination VMs. SSH is typically pre-installed on most Linux distributions.
+	If SSH is not installed, install it by running the following command:
+		sudo apt install openssh-server
+	Enable SSH by starting the SSH service:
+		sudo service ssh start
+5. scp file.txt username@ipadd: (vm2@172.168.2.5):
+6. this should transfer the file from vm1 to vm2

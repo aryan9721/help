@@ -1,0 +1,68 @@
+<html>
+    <head>
+
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery library -->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        
+        <style>
+            #contacts{
+                display: none
+            }
+        </style>
+    </head>
+
+    <body>
+        <div data-role="page">
+            <div data-role="header">
+                <h1>My Phone book</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>                        
+                        <li>
+                            <a href="PhoneBook.html">PhoneBook</a>
+                        </li>                        
+                        <li>
+                            <a href="Create.html">Create Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="ui-content" style="min-height: calc(100vh - 125px); display: grid; justify-content: center; align-content: center;">
+                <center>
+                    <h3>Phonebook</h3>
+                    <ul data-role="listview" id="contacts">
+                        <!-- filled by jquery -->
+                    </ul>                
+                </center>
+            </div>
+            <div data-role="footer">
+                <h1>copyright 2020</h1>
+            </div>
+        </div>
+        <script>
+            var data = JSON.parse(localStorage.getItem('data'));
+            console.log(data);
+            if(data)
+            {
+                $.each(data, function (index,item) {
+                    var list = '<li><h3>' + item.name + '</h3>' + item.tel + '</li>'
+                    $('#contacts').append(list);
+                })
+
+                $('#contacts').show();
+            }
+        </script>
+    </body>
+
+</html>
